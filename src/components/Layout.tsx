@@ -36,7 +36,7 @@ export default function Layout() {
           ))}
         </nav>
         <div className="px-5 py-3 text-xs text-slate-500 border-t border-slate-800">
-          v0.1.0 · Desktop
+          v1.0.0 · Desktop
         </div>
       </aside>
       <main className="flex-1 overflow-auto">

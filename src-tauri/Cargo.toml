@@ -1,8 +1,8 @@
 [package]
 name = "homebuhg-desktop"
-version = "0.1.0"
-description = "A Tauri App"
-authors = ["you"]
+version = "1.0.0"
+description = "Домашняя бухгалтерия с синхронизацией через Firebase"
+authors = ["BorisMiachikov"]
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -34,5 +34,6 @@ rust_xlsxwriter = "0.95.0"
 tauri-plugin-store = "2.4.3"
 tauri-plugin-dialog = "2.7.1"
 tauri-plugin-fs = "2.5.1"
+tauri-plugin-opener = "2"
 rrule = "0.14.0"
 

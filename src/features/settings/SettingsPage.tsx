@@ -1,3 +1,4 @@
+import { openPath } from "@tauri-apps/plugin-opener";
 import { useEffect, useState } from "react";
 import PageHeader from "../../components/PageHeader";
 import { api } from "../../lib/api";
@@ -321,9 +322,15 @@ export default function SettingsPage() {
             <p className="text-sm text-red-600 bg-red-50 rounded p-2">{exportError}</p>
           )}
           {exportPath && (
-            <p className="text-sm text-green-700 bg-green-50 rounded p-2">
-              Сохранено: {exportPath}
-            </p>
+            <div className="flex items-center gap-3 bg-green-50 rounded p-2">
+              <p className="text-sm text-green-700 flex-1 truncate">Сохранено: {exportPath}</p>
+              <button
+                onClick={() => openPath(exportPath)}
+                className="shrink-0 text-sm text-green-800 font-medium underline hover:no-underline"
+              >
+                Открыть
+              </button>
+            </div>
           )}
         </section>
 
@@ -352,9 +359,15 @@ export default function SettingsPage() {
             <p className="text-sm text-red-600 bg-red-50 rounded p-2">{backupError}</p>
           )}
           {backupPath && (
-            <p className="text-sm text-green-700 bg-green-50 rounded p-2">
-              Сохранено: {backupPath}
-            </p>
+            <div className="flex items-center gap-3 bg-green-50 rounded p-2">
+              <p className="text-sm text-green-700 flex-1 truncate">Сохранено: {backupPath}</p>
+              <button
+                onClick={() => openPath(backupPath)}
+                className="shrink-0 text-sm text-green-800 font-medium underline hover:no-underline"
+              >
+                Открыть
+              </button>
+            </div>
           )}
           {importResult && (
             <p className="text-sm text-green-700 bg-green-50 rounded p-2">
