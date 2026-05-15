@@ -130,3 +130,13 @@ export interface ReportRange {
 }
 
 export const UNITS = ["шт", "кг", "г", "л", "мл", "м", "упак", "пачка", "пара", "рул"] as const;
+
+export interface SyncStatus {
+  loggedIn: boolean;
+  lastSyncMs: number;
+}
+
+export interface SyncResult {
+  uploaded: number;
+  downloaded: number;
+}

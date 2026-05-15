@@ -4,8 +4,9 @@ pub mod domain;
 pub mod error;
 pub mod models;
 pub mod repository;
+pub mod sync;
 
-use crate::commands::{accounts, budgets, categories, merchants, operations, recurring, reports, session};
+use crate::commands::{accounts, budgets, categories, merchants, operations, recurring, reports, session, sync as sync_cmd};
 use tauri::Manager;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -45,6 +46,10 @@ pub fn run() {
             reports::reports_summary,
             reports::reports_monthly,
             reports::reports_top_categories,
+            sync_cmd::sync_login,
+            sync_cmd::sync_now,
+            sync_cmd::sync_status,
+            sync_cmd::sync_logout,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

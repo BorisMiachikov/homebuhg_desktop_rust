@@ -6,3 +6,4 @@ pub mod operations;
 pub mod recurring;
 pub mod reports;
 pub mod session;
+pub mod sync;

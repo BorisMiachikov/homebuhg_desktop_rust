@@ -11,6 +11,8 @@ import type {
   ReportRange,
   ReportSummary,
   SessionInfo,
+  SyncResult,
+  SyncStatus,
   Transaction,
 } from "./types";
 
@@ -69,5 +71,18 @@ export const api = {
       invoke("reports_monthly", { range }),
     topCategories: (range: ReportRange, limit = 20): Promise<CategorySpend[]> =>
       invoke("reports_top_categories", { range, limit }),
+  },
+  sync: {
+    login: (
+      email: string,
+      password: string,
+      projectId: string,
+      apiKey: string,
+      householdId: string,
+    ): Promise<SyncStatus> =>
+      invoke("sync_login", { email, password, projectId, apiKey, householdId }),
+    now: (): Promise<SyncResult> => invoke("sync_now"),
+    status: (): Promise<SyncStatus> => invoke("sync_status"),
+    logout: (): Promise<void> => invoke("sync_logout"),
   },
 };
