@@ -111,3 +111,23 @@ pub fn modified_since(
     }
     Ok(out)
 }
+
+pub fn list_range(
+    conn: &Connection,
+    household_id: &str,
+    from_ms: i64,
+    to_ms: i64,
+) -> AppResult<Vec<Transaction>> {
+    let mut stmt = conn.prepare(
+        "SELECT * FROM transactions \
+         WHERE household_id = ?1 AND is_deleted = 0 \
+         AND occurred_at >= ?2 AND occurred_at <= ?3 \
+         ORDER BY occurred_at ASC",
+    )?;
+    let rows = stmt.query_map(params![household_id, from_ms, to_ms], row_to_tx)?;
+    let mut out = Vec::new();
+    for r in rows {
+        out.push(r?);
+    }
+    Ok(out)
+}

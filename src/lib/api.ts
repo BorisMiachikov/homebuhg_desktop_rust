@@ -5,6 +5,7 @@ import type {
   BudgetProgress,
   Category,
   CategorySpend,
+  ImportResult,
   MonthlyPoint,
   OperationDetail,
   RecurringRule,
@@ -84,5 +85,15 @@ export const api = {
     now: (): Promise<SyncResult> => invoke("sync_now"),
     status: (): Promise<SyncStatus> => invoke("sync_status"),
     logout: (): Promise<void> => invoke("sync_logout"),
+  },
+  export: {
+    transactionsCsv: (householdId: string, fromMs: number, toMs: number): Promise<string | null> =>
+      invoke("export_transactions_csv", { householdId, fromMs, toMs }),
+    transactionsXlsx: (householdId: string, fromMs: number, toMs: number): Promise<string | null> =>
+      invoke("export_transactions_xlsx", { householdId, fromMs, toMs }),
+    backupJson: (householdId: string): Promise<string | null> =>
+      invoke("export_backup_json", { householdId }),
+    importJson: (householdId: string): Promise<ImportResult | null> =>
+      invoke("import_backup_json", { householdId }),
   },
 };

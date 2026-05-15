@@ -6,7 +6,7 @@ pub mod models;
 pub mod repository;
 pub mod sync;
 
-use crate::commands::{accounts, budgets, categories, merchants, operations, recurring, reports, session, sync as sync_cmd};
+use crate::commands::{accounts, budgets, categories, export as export_cmd, merchants, operations, recurring, reports, session, sync as sync_cmd};
 use tauri::Manager;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -50,6 +50,10 @@ pub fn run() {
             sync_cmd::sync_now,
             sync_cmd::sync_status,
             sync_cmd::sync_logout,
+            export_cmd::export_transactions_csv,
+            export_cmd::export_transactions_xlsx,
+            export_cmd::export_backup_json,
+            export_cmd::import_backup_json,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

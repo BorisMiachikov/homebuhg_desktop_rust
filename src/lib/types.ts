@@ -140,3 +140,10 @@ export interface SyncResult {
   uploaded: number;
   downloaded: number;
 }
+
+export interface ImportResult {
+  transactions: number;
+  accounts: number;
+  categories: number;
+  budgets: number;
+}
